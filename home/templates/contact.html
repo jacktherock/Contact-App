@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+<div class="row">
+    <div class="col-sm-4">
+        <h4 class="alert alert-warning">Add Contact</h4>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="btn btn-success" type="submit" value="Add Contact">
+        </form>
+    </div>
+
+    <div class="col-sm-7 offset-1">
+        <h4 class="alert alert-warning">Contacts</h4>
+        <table class="table table-hover">
+            <thead>
+                {% if data %}
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Contact Name</th>
+                    <th scope="col">Mobile number</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for cons in data %}
+                <tr>
+                    <th scope="row">{{cons.id}}</th>
+                    <td>{{cons.name}}</td>
+                    <td>{{cons.mobile_no}}</td>
+                    <td>
+                        <a class="btn btn-sm btn-warning " href="{% url 'updatecontact' cons.id %}">Update</a>
+
+                        <form class="d-inline mx-1" action="{% url 'deletecontact' cons.id %}" method="post">
+                            {% csrf_token %}
+                            <input class="btn btn-sm btn-danger" type="submit" value="Delete">
+                        </form>
+
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            {% else %}
+
+            <h5 class="alert alert-danger">No Contacts Available</h5>
+
+            {% endif %}
+        </table>
+    </div>
+</div>
+{% endblock body %}

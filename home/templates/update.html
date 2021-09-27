@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Contact{% endblock title %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-sm-6 offset-3">
+        <h4 class="text-center alert alert-warning">Update Contact</h4>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+
+        <input class="btn btn-success" type="submit" value="Update Contact">
+            <a class="btn btn-info mx-3 my-2" href="{% url 'addcontact' %}">Back to Home</a>
+        </form>
+    </div>
+</div>
+
+{% endblock body %}
+
+{% block script %}
+
+{% endblock script %}
