@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-8w502u5i^0l^w=rhmmzp9+$lrazz)_=0a1d=gmafzghg6hen$h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"] # required
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'home',
+    'rest_framework',# required
+    'corsheaders', # required
 ]
 
 MIDDLEWARE = [
@@ -48,7 +50,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', # required
 ]
+
+# required
+CORS_ORIGIN_ALLOW_ALL = True
+
 
 ROOT_URLCONF = 'ContactApp.urls'
 
